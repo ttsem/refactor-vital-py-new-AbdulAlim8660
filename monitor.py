@@ -1,37 +1,15 @@
-
-from time import sleep
-import sys
+from utils import sleep_func
 
 
 def vitals_ok(temperature, pulseRate, spo2):
-  if temperature > 102 or temperature < 95:
-    print('Temperature critical!')
-    for i in range(6):
-      print('\r* ', end='')
-      sys.stdout.flush()
-      sleep(1)
-      print('\r *', end='')
-      sys.stdout.flush()
-      sleep(1)
-    return False
-  elif pulseRate < 60 or pulseRate > 100:
-    print('Pulse Rate is out of range!')
-    for i in range(6):
-      print('\r* ', end='')
-      sys.stdout.flush()
-      sleep(1)
-      print('\r *', end='')
-      sys.stdout.flush()
-      sleep(1)
-    return False
-  elif spo2 < 90:
-    print('Oxygen Saturation out of range!')
-    for i in range(6):
-      print('\r* ', end='')
-      sys.stdout.flush()
-      sleep(1)
-      print('\r *', end='')
-      sys.stdout.flush()
-      sleep(1)
-    return False
-  return True
+    if temperature not in range(95,102):
+        print('Temperature critical!')
+        sleep_func()
+    elif pulseRate not in range(60,100):
+        print('Pulse Rate is out of range!')
+        sleep_func()
+    elif spo2 < 90:
+        print('Oxygen Saturation out of range!')
+        sleep_func()
+    else:
+        return True
